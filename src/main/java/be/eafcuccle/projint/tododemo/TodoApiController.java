@@ -34,4 +34,16 @@ public class TodoApiController {
     URI todoUri = uriBuilder.pathSegment("api", "todos", "{id}").build(savedTodo.getId());
     return ResponseEntity.created(todoUri).body(savedTodo);
   }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<Todo> updateTodoById(@PathVariable UUID id, @RequestBody Todo todo) {
+    if (!id.equals(todo.getId())) {
+      return ResponseEntity.badRequest().build();
+    }
+    Todo foundTodo = todoRepository.findById(id).orElseThrow();
+    foundTodo.setDescription(todo.getDescription());
+    foundTodo.setDone(todo.getDone());
+    todoRepository.save(foundTodo);
+    return ResponseEntity.ok(foundTodo);
+  }
 }
