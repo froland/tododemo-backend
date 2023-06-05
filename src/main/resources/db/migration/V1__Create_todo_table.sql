@@ -1,8 +1,6 @@
-CREATE SEQUENCE IF NOT EXISTS todo_seq START WITH 1 INCREMENT BY 50;
-
 CREATE TABLE todo
 (
-  id          BIGINT       NOT NULL,
+  id          UUID       NOT NULL,
   done        BOOLEAN      NOT NULL,
   description VARCHAR(255) NOT NULL,
   CONSTRAINT pk_todo PRIMARY KEY (id)

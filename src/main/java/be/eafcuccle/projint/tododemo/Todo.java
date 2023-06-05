@@ -2,13 +2,15 @@ package be.eafcuccle.projint.tododemo;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "todo")
 public class Todo {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "id", nullable = false)
-  private Long id;
+  private UUID id;
 
   @Column(name = "done", nullable = false)
   private Boolean done;
@@ -24,7 +26,7 @@ public class Todo {
     this.done = false;
   }
 
-  public Long getId() {
+  public UUID getId() {
     return id;
   }
 
