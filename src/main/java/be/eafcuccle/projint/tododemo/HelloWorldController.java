@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloWorldController {
-  @GetMapping("/hello")
+  @GetMapping("/api/hello")
   public ResponseEntity<String> helloWorld() {
     return ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN).body("Hello World!");
   }
