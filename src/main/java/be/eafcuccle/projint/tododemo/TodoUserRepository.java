@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface TodoRepository extends JpaRepository<Todo, UUID> {
-  List<Todo> findByOwner(TodoUser owner);
+public interface TodoUserRepository extends JpaRepository<TodoUser, UUID> {
+  Optional<TodoUser> findByUsername(String username);
 
-  Optional<Todo> findByIdAndOwner(UUID id, TodoUser owner);
 }

@@ -15,7 +15,9 @@ class TodoTest {
 
   @Test
   void persistTodo() {
-    Todo todo = new Todo("Test");
+    TodoUser owner = new TodoUser("Test user");
+    entityManager.persist(owner);
+    Todo todo = new Todo(owner, "Test");
     Todo savedTodo = entityManager.persistFlushFind(todo);
     assertNotNull(savedTodo.getId());
     assertEquals("Test", savedTodo.getDescription());
