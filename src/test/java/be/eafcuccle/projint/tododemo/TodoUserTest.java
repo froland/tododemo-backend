@@ -9,17 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJpaTest
-class TodoTest {
+class TodoUserTest {
   @Autowired
   TestEntityManager entityManager;
 
   @Test
-  void persistTodo() {
-    TodoUser owner = new TodoUser("test@example.net");
-    owner = entityManager.persist(owner);
-    Todo todo = new Todo(owner, "Test");
-    Todo savedTodo = entityManager.persistFlushFind(todo);
-    assertNotNull(savedTodo.getId());
-    assertEquals("Test", savedTodo.getDescription());
+  void persistTodoUser() {
+    TodoUser user = new TodoUser("user123@example.net");
+    TodoUser savedUser = entityManager.persistFlushFind(user);
+    assertNotNull(savedUser.getId());
+    assertEquals("user123@example.net", savedUser.getEmail());
   }
 }
