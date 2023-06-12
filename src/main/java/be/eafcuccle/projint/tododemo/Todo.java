@@ -15,14 +15,20 @@ public class Todo {
   @Column(name = "done", nullable = false)
   private Boolean done;
 
+
   @Column(name = "description", nullable = false)
   private String description;
+
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "owner_id", nullable = false)
+  private TodoUser owner;
 
   protected Todo() {
   }
 
-  Todo(String description) {
+  Todo(String description, TodoUser owner) {
     this.description = description;
+    this.owner = owner;
     this.done = false;
   }
 
@@ -46,4 +52,7 @@ public class Todo {
     this.done = done;
   }
 
+  public TodoUser getOwner() {
+    return owner;
+  }
 }
