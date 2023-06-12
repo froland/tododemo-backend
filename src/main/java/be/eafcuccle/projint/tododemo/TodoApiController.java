@@ -56,10 +56,9 @@ public class TodoApiController {
 
   private TodoUser getOwnerFromAuthentication(Authentication authentication) {
     String username = authentication.getName();
-    TodoUser owner = todoUserRepository.findByUsername(username).orElseGet(() -> {
+    return todoUserRepository.findByUsername(username).orElseGet(() -> {
       TodoUser newUser = new TodoUser(username);
       return todoUserRepository.save(newUser);
     });
-    return owner;
   }
 }
