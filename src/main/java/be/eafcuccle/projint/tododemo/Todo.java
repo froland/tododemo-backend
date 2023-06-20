@@ -12,31 +12,24 @@ public class Todo {
   @Column(name = "id", nullable = false)
   private UUID id;
 
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "owner_id", nullable = false)
-  private TodoUser owner;
-
   @Column(name = "done", nullable = false)
   private Boolean done;
+
 
   @Column(name = "description", nullable = false)
   private String description;
 
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "owner_id", nullable = false)
+  private TodoUser owner;
+
   protected Todo() {
   }
 
-  Todo(TodoUser owner, String description) {
+  Todo(String description, TodoUser owner) {
     this.description = description;
     this.owner = owner;
     this.done = false;
-  }
-
-  public TodoUser getOwner() {
-    return owner;
-  }
-
-  public void setOwner(TodoUser owner) {
-    this.owner = owner;
   }
 
   public UUID getId() {
@@ -59,4 +52,7 @@ public class Todo {
     this.done = done;
   }
 
+  public TodoUser getOwner() {
+    return owner;
+  }
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
+@Table(name = "todo_user")
 public class TodoUser {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
@@ -14,18 +15,18 @@ public class TodoUser {
   @Column(name = "username", nullable = false, unique = true)
   private String username;
 
+  protected TodoUser() {}
+
   TodoUser(String username) {
     this.username = username;
-  }
-
-  protected TodoUser() {
   }
 
   public UUID getId() {
     return id;
   }
 
-  public String getEmail() {
+  public String getUsername() {
     return username;
   }
+
 }
